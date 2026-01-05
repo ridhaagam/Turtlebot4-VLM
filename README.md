@@ -15,7 +15,7 @@ A real-time waste bin monitoring system using **Florence-2 Vision Language Model
 | **Server** | [SERVER_SETUP.md](SERVER_SETUP.md) | Docker deployment for dashboard and vision inference |
 | **Raspberry Pi 4** | [RPI_SETUP.md](RPI_SETUP.md) | ROS2 Jazzy + TurtleBot4 Lite robot setup |
 | **Jetson Orin** | [JETSON_SETUP.md](JETSON_SETUP.md) | Edge device with local Florence-2 inference |
-| **Robot (edge-bot)** | [edge-bot/CLAUDE.md](edge-bot/CLAUDE.md) | ROS2 package development guide |
+| **Robot (edge-bot)** | ROS2 package development guide |
 
 ### Quick Start Order
 
