@@ -1,0 +1,13 @@
+# Jetson Orin specific configuration overrides
+
+camera:
+  width: 640
+  height: 480
+  fps: 10
+
+model:
+  device: "cuda"
+  use_fp16: true
+
+inference:
+  target_fps: 8

@@ -1,0 +1,31 @@
+# Trash Bot Configuration Parameters
+
+# Motion Subscriber Parameters
+motion_subscriber:
+  ros__parameters:
+    max_linear_speed: 0.3      # m/s - maximum forward/backward speed
+    max_angular_speed: 1.0     # rad/s - maximum rotation speed
+
+# Bin Detector Parameters
+bin_detector_node:
+  ros__parameters:
+    camera_topic: "/camera/image_raw"
+    min_contour_area: 5000     # Minimum contour area to consider as bin
+    detection_interval: 5      # Process every Nth frame
+
+# Classifier Node Parameters
+classifier_node:
+  ros__parameters:
+    camera_device: "/dev/video0"     # USB webcam for classification
+    camera_width: 640
+    camera_height: 480
+    server_url: "http://192.168.0.81:5000"
+    model_name: "microsoft/Florence-2-base"
+    confidence_threshold: 0.3
+
+# Command Service Parameters
+command_service:
+  ros__parameters:
+    search_speed: 0.3
+    approach_speed: 0.4
+    search_rotation_speed: 0.2

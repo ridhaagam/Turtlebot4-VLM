@@ -1,0 +1,10 @@
+# Raspberry Pi 4 requirements
+# CPU-only PyTorch with optimizations
+
+-r base.txt
+
+# PyTorch CPU-only
+torch>=2.0.0
+
+# ONNX Runtime for quantized inference (optional, for better performance)
+onnxruntime>=1.16.0

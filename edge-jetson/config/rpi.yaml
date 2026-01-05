@@ -1,0 +1,14 @@
+# Raspberry Pi 4 specific configuration overrides
+
+camera:
+  width: 320
+  height: 240
+  fps: 2
+
+model:
+  device: "cpu"
+  use_fp16: false
+
+inference:
+  target_fps: 1
+  skip_frames: 2

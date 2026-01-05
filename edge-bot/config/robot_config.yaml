@@ -1,0 +1,48 @@
+# ============================================================
+# TurtleBot4 Lite Robot Configuration
+# ============================================================
+# This file contains all robot parameters for the trash bot system
+
+# Server Connection
+server:
+  url: "http://192.168.0.81:5000"  # Dashboard server IP
+  timeout: 30.0                     # Request timeout in seconds
+  retry_attempts: 3
+  username: "admin"
+  password: "admin"
+
+# Navigation Parameters
+navigation:
+  forward_speed: 1.0        # Speed factor 0-1 (1.0 = max linear speed)
+  turn_speed: 0.5           # Speed factor 0-1 (0.5 = 50% max angular speed)
+  search_timeout: 300.0     # Search timeout in seconds (5 minutes)
+  inference_rate: 0.5       # Inference frequency in Hz (every 2 seconds)
+  use_florence2: true       # Use Florence-2 for object detection
+
+# Motion Control
+motion:
+  max_linear_speed: 0.3     # m/s - safe speed for TurtleBot4
+  max_angular_speed: 1.0    # rad/s
+  default_command_timeout: 5.0  # Default timeout for commands without duration
+
+# Camera Configuration
+camera:
+  navigation_device: "/dev/video2"    # USB camera for navigation
+  classification_device: "/dev/video0" # Camera for classification
+  width: 640
+  height: 480
+  use_ros_camera: false     # Use USB camera by default
+  ros_camera_topic: "/oak/rgb/image_raw"  # OAK-D camera topic if use_ros_camera=true
+
+# ROS2 Configuration
+ros:
+  domain_id: 0
+  rmw_implementation: "rmw_fastrtps_cpp"
+
+# Watchdog
+watchdog:
+  timeout: 60.0             # Reset if no progress for this many seconds
+
+# Logging
+logging:
+  level: "INFO"             # DEBUG, INFO, WARNING, ERROR

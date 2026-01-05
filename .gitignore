@@ -1,0 +1,117 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+edge/venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn
+
+# Build outputs
+dashboard/frontend/dist/
+dashboard/frontend/build/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# Database
+*.db
+*.sqlite3
+
+# Uploads and data
+uploads/
+data/
+*.jpg
+*.jpeg
+*.png
+*.gif
+!dashboard/frontend/public/**
+
+# Docker
+.docker/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.bak
+
+# Cache
+.cache/
+*.cache
+.huggingface/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model weights (downloaded at runtime)
+*.bin
+*.safetensors
+*.onnx
+*.pt
+*.pth
+
+# Secrets
+*.pem
+*.key
+credentials.json
+secrets.yaml
+
+# ROS2 build artifacts
+install/
+log/
+COLCON_IGNORE

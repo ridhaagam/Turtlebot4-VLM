@@ -1,0 +1,13 @@
+# Jetson Orin requirements
+# Includes CUDA-enabled PyTorch from Jetson AI Lab
+
+-r base.txt
+
+# PyTorch with CUDA support for Jetson
+# NOTE: PyTorch should be installed from Jetson AI Lab PyPI for CUDA compatibility:
+#   pip install torch==2.8.0 torchvision==0.23.0 --index-url=https://pypi.jetson-ai-lab.io/jp6/cu126
+#
+# This provides matched torch/torchvision wheels built for JetPack 6.x with CUDA 12.6
+
+# TensorRT optimization (optional, for production)
+# tensorrt>=8.6.0

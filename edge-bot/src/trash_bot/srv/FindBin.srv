@@ -1,0 +1,11 @@
+# FindBin.srv
+# Service to start/stop bin search navigation
+
+# Request
+bool start              # true to start, false to stop search
+float32 timeout         # search timeout in seconds (0 = use default)
+---
+# Response
+bool success            # true if request was accepted
+string message          # status message
+string state            # current state (idle, searching, approaching, arrived)

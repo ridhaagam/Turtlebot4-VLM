@@ -1,0 +1,9 @@
+# ExecuteCommand.srv - Service to execute high-level robot commands
+# Request
+string command              # search, approach, classify, return, stop
+float32 parameter           # Optional parameter (e.g., search duration, approach distance)
+---
+# Response
+bool success                # Whether command executed successfully
+string message              # Status message
+string result_data          # JSON string with additional result data (detection info, etc.)

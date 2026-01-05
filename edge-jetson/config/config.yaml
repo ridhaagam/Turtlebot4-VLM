@@ -1,0 +1,47 @@
+# Edge Detection System Configuration
+# Base configuration - platform-specific overrides in jetson.yaml / rpi.yaml
+#
+# NOTE: This edge device is configured for CAMERA STREAMING ONLY.
+# All inference (Florence-2 + SmolVLM2) runs on the dashboard server GPU.
+# Robot navigation control is handled by separate ROS2 code.
+
+camera:
+  device: "/dev/video0"
+  width: 640
+  height: 480
+  fps: 5
+  buffer_size: 1
+  auto_reconnect: true
+
+# Local model inference is DISABLED
+# The edge device only captures and streams frames to the server
+model:
+  enabled: false  # Disable local Florence-2 inference
+  name: "microsoft/Florence-2-base"
+  device: "auto"
+  task: "<OD>"
+  confidence_threshold: 0.3
+  use_fp16: true
+  max_new_tokens: 1024
+
+server:
+  protocol: "rest"
+  url: "http://192.168.0.81:5000"  # Dashboard server IP
+  endpoints:
+    detections: "/api/detections"
+    health: "/api/health"
+    frame_infer: "/api/camera/frame-infer"  # Server-side inference endpoint
+  timeout: 30.0
+  retry_count: 3
+  retry_delay: 1.0
+  send_images: true
+  image_quality: 85
+  # Use server-side inference (Florence-2 + SmolVLM2 on RTX 5090)
+  use_server_inference: true
+
+inference:
+  target_fps: 5
+  skip_frames: 0
+
+logging:
+  level: "INFO"

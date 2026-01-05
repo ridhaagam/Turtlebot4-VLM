@@ -1,0 +1,12 @@
+# ClassifyBin.srv - Service to classify bin fullness
+# Request
+bool capture_new_frame      # If true, capture new frame; if false, use cached
+---
+# Response
+bool success                # Whether classification succeeded
+string fullness_level       # "0-25%", "25-75%", "75-90%", "90-100%", "unknown"
+int32 fullness_percent      # Numeric percentage
+string label                # Detected bin type
+float32 confidence          # Detection confidence
+string status_summary       # Human-readable summary
+bool sent_to_server         # Whether result was sent to dashboard server

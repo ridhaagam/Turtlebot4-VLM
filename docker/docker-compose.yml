@@ -1,0 +1,82 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: detection-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword123}
+      MYSQL_DATABASE: detections
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: ${DB_PASSWORD:-adminpassword123}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3303:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-rootpassword123}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - detection-network
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.backend
+    container_name: detection-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: mysql+pymysql://admin:${DB_PASSWORD:-adminpassword123}@mysql:3306/detections
+      FLASK_ENV: ${FLASK_ENV:-production}
+      SECRET_KEY: ${SECRET_KEY:-change-this-in-production}
+      JWT_SECRET: ${JWT_SECRET:-change-this-jwt-secret-in-production}
+      HMAC_SECRET: ${HMAC_SECRET:-change-this-hmac-secret-in-production}
+      UPLOAD_FOLDER: /app/uploads
+      LOAD_VISION_MODEL: ${LOAD_VISION_MODEL:-true}
+    volumes:
+      - upload_data:/app/uploads
+      - huggingface_cache:/root/.cache/huggingface
+    ports:
+      - "5000:5000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    networks:
+      - detection-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.frontend
+    container_name: detection-frontend
+    restart: unless-stopped
+    ports:
+      - "3004:80"
+    depends_on:
+      - backend
+    networks:
+      - detection-network
+
+volumes:
+  mysql_data:
+  upload_data:
+  huggingface_cache:
+
+networks:
+  detection-network:
+    driver: bridge

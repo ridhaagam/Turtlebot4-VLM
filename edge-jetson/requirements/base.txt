@@ -1,0 +1,29 @@
+# Base requirements for Edge Detection System
+# Common dependencies for all platforms
+
+# Core ML dependencies
+# Pin transformers for Florence-2 compatibility
+transformers>=4.44.0,<4.45.0
+accelerate>=0.27.0
+timm>=0.9.0
+einops>=0.7.0
+
+# Image processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# Networking
+requests>=2.31.0
+
+# Configuration
+pyyaml>=6.0
+
+# Numerical (pinned for compatibility)
+numpy>=1.24.0,<2.0.0
+scipy>=1.10.0
+
+# Optional: WebSocket support
+websockets>=12.0
+
+# Optional: MQTT support
+paho-mqtt>=2.0.0
